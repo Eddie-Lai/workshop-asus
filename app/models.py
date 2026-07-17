@@ -16,3 +16,8 @@ class ProductPage(BaseModel):
     page: int = Field(ge=1)
     page_size: int = Field(ge=1)
 
+
+class SalesReport(BaseModel):
+    category: str = Field(min_length=1)
+    items: list[Product]
+    total: float = Field(ge=0)
