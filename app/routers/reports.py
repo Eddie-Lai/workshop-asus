@@ -17,8 +17,6 @@ def sales_report(
     category: str = Query(min_length=1, max_length=100),
     formula: Literal["total"] = Query(default="total"),
 ) -> SalesReport:
-    del formula
-
     try:
         items = list_products_by_category(category)
     except sqlite3.Error:
@@ -29,4 +27,4 @@ def sales_report(
         ) from None
 
     total = sum(item.price for item in items)
-    return SalesReport(category=category, items=items, total=total)
+    return SalesReport(category=category, items=items, total=total if formula == "total" else total)
