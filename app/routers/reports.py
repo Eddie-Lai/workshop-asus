@@ -27,4 +27,4 @@ def sales_report(
         ) from None
 
     total = sum(item.price for item in items)
-    return SalesReport(category=category, items=items, total=total if formula == "total" else total)
+    return SalesReport(category=category, items=items, total=total)
